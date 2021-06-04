@@ -1,0 +1,60 @@
+<div class="card bg-light mb-3">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+    <button class="btn btn-secondary my-2" routerLink="/examenes">
+      Volver
+    </button>
+
+
+    <form>
+
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="model.nombre">
+
+        <div class="alert alert-danger" *ngIf="error?.nombre">{{error.nombre}}</div>
+      </div>
+
+      <div class="form-group">
+        <label for="asignaturapadre">Asignatura</label>
+        <select (change)="cargarHijos()"
+         [(ngModel)]="model.asignaturaPadre"  class="form-control" name="asignaturapadre" id="asignaturapadre">
+          <option [ngValue]="undefined">--Seleccionar una Asignatura--</option>
+          <option *ngFor="let asignatura of asignaturaPadre" [ngValue]="asignatura">
+            {{asignatura.nombre}}
+          </option>
+        </select>
+
+        <div class="alert alert-danger" *ngIf="error?.asignaturaPadre">{{error.asignaturaPadre}}</div>
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="asignaturahija">Asignatura</label>
+        <select [(ngModel)]="model.asignaturaHija"  class="form-control" name="asignaturahija" id="asignaturahija">
+          <option [ngValue]="undefined">--Seleccionar una Asignatura--</option>
+          <option *ngFor="let asignaturaHija of asignaturaHija" [ngValue]="asignaturaHija">
+            {{asignaturaHija.nombre}}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="error?.asignaturaHija">{{error.asignaturaHija}}</div>
+
+      </div>
+
+
+
+      <div class="form-group my-2">
+        <button class="btn btn-primary" type="button" (click)="model.id? editar():crear()">
+
+          {{model.id? 'Editar':'Crear'}}
+        </button>
+      </div>
+
+
+    </form>
+
+
+  </div>
+</div>
+
