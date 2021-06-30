@@ -17,12 +17,18 @@ export class ExamenService extends CommonService<Examen>{
 
   constructor( http:HttpClient) {
     super(http);
+
    }
 
 
    public findAllAsignatura():Observable<Asignatura[]>{
      return this.http.get<Asignatura[]>(`${this.baseEndPoint}/asignaturas`);
    }
+
+   public ver(id:number):Observable<Examen>{
+    console.log('id:'+this.baseEndPoint);
+    return this.http.get<Examen>(`${this.baseEndPoint}/obtener-Examen/${id}`)
+  }
 
 
 
